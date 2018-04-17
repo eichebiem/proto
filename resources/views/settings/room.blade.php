@@ -83,7 +83,7 @@
                     <div class="box-footer">
                          <button type="reset" class="btn btn-warning pull-right"><i class="fa fa-refresh"></i> Reset</button>
 
-                         <button type="button" class="btn btn-success pull-right" id="save"><i class="fa fa-floppy-o"></i> Save</button>
+                         <button type="submit" class="btn btn-success pull-right"><i class="fa fa-floppy-o"></i> Save</button>
                     </div>
                     <!-- /.box-footer -->
                </form>
@@ -100,20 +100,27 @@
 
 @section('ajax')
 <script>
-$(document).ready(function () {
 
-     $('#save').click(function(){
-          $('#form-validate').submit(function(e){
-               e.preventDefault();
+     $('#form-validate').submit(function(event){
+          event.preventDefault();
 
-               var formdata = new FormData(this);
+          var room_name = $('#name').val();
 
-               $.post('settings/room', formdata, function(data){
+          $.ajax({
+               type: 'POST',
+               data: {
+                    name:room_name
+               },
+               url: '/settings/room'
+               
+               success: function(data){
                     console.log(data);
-               })
-
+               }
           });
+
      });
-});
+
+     
+
 </script>
 @endsection

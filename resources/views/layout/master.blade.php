@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ABC Elementary | Admin</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -75,22 +76,28 @@
 
 <!-- page script -->
 <script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
+     $.ajaxSetup({
+          headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               }
+     });
+     
+     $(document).ready(function () {
+          $('.sidebar-menu').tree()
+     })
 </script>
 
 <script>
-  $(function () {
-    $('#example1').DataTable({
-      'paging'      : true,
-      'lengthChange': true,
-      'searching'   : true,
-      'ordering'    : false,
-      'info'        : true,
-      'autoWidth'   : true
-    })
-  })
+     $(function () {
+          $('#example1').DataTable({
+               'paging'      : true,
+               'lengthChange': true,
+               'searching'   : true,
+               'ordering'    : false,
+               'info'        : true,
+               'autoWidth'   : true
+          })
+     })
 </script>
 
 @yield('ajax')
