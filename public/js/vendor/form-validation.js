@@ -1,59 +1,64 @@
 $(document).ready(function(){
 
-     $('#alert_message').delay(10000).fadeOut();
+    $('#alert_message').delay(10000).fadeOut();
 
-     $.validator.setDefaults({
-          errorClass: 'help-block',
-          highlight: function(element) {
-              $(element)
-                  .closest('.form-group')
-                  .addClass('has-error');
-          },
-          unhighlight: function(element) {
-              $(element)
-                  .closest('.form-group')
-                  .removeClass('has-error');
-          },
-          errorPlacement: function (error, element) {
-              if (element.prop('type') === 'checkbox') {
-                  error.insertAfter(element.parent());
-              } else {
-                  error.insertAfter(element);
-              }
-          }
-      });
+    $.validator.setDefaults({
+        errorClass: 'help-block',
+        highlight: function(element) {
+            $(element)
+                .closest('.form-group')
+                .addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element)
+                .closest('.form-group')
+                .removeClass('has-error');
+        },
+        errorPlacement: function (error, element) {
+            if (element.prop('type') === 'checkbox') {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
 
-     $('#form-validate').validate({
+    $('#form-validate').validate({
 
-          rules: {
-               username: {
-                    required: true,
-                    minlength: 5
-               },
-               password: {
-                    required: true,
-                    minlength: 5
-               }
-          },
+        rules: {
+            username: {
+                required: true,
+                minlength: 5
+            },
+            password: {
+                required: true,
+                minlength: 5
+            }
+        },
 
-          messages: {
-               
-          },
+        messages: {
+            username: {
+                required: "Username is required"
+            },
+            password: {
+                required: "Password is required"
+            }
+        },
 
-          submitHandler: function(form){
-               form.submit();
-          }
+        submitHandler: function(form){
+            form.submit();
+        }
 
-     });
+    });
 
 
-     // Input mask
+    // Input mask
 //     $('#contact_number').mask('0000-000-0000');
 //     $('#company_tel').mask('(000) 000-0000');
 //     $('#client_tel').mask('(000) 000-0000');
 
 
-    // make check boxes behave like radio button
+// make check boxes behave like radio button
 //     $(".course").change(function() {
 //         $(".course").prop('checked', false);
 //         $(this).prop('checked', true);

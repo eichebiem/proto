@@ -11,4 +11,13 @@ class SessionsController extends Controller
         return view('login');
     }
 
+    public function store()
+    {
+        if(auth()->attempt(request(['username', 'password']))){
+            return redirect('/home');
+        }
+
+        return back()->with('message', 'Invalid login details. Please try again.');
+    }
+
 }
