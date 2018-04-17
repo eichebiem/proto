@@ -63,7 +63,7 @@
                     <h3 class="box-title">Create Room</h3>
                </div>
 
-               <form id="form-validate" action="" method="POST">
+               <form id="form-validate" method="POST">
 
                     @csrf
                
@@ -101,24 +101,10 @@
 @section('ajax')
 <script>
 
-     $('#form-validate').submit(function(event){
-          event.preventDefault();
-
-          var room_name = $('#name').val();
-
-          $.ajax({
-               type: 'POST',
-               data: {
-                    name:room_name
-               },
-               url: '/settings/room'
-               
-               success: function(data){
-                    console.log(data);
-               }
-          });
-
-     });
+     $('#form-validate').on('submit', function(e) {
+		e.preventDefault();
+		console.log('prevented');
+	});
 
      
 
