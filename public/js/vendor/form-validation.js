@@ -33,6 +33,10 @@ $(document).ready(function(){
             password: {
                 required: true,
                 minlength: 5
+            },
+            name: {
+                required: true,
+                minlength: 5
             }
         },
 
@@ -42,6 +46,9 @@ $(document).ready(function(){
             },
             password: {
                 required: "Password is required"
+            },
+            name: {
+                required: "Room Name is required"
             }
         },
 

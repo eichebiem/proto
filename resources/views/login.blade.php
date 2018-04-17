@@ -90,6 +90,7 @@
 <script src="/js/vendor/jquery.validate.min.js"></script>
 <!-- Custom Form Validation -->
 <script src="/js/vendor/form-validation.js"></script>
+
 <script>
   $(function () {
     $('input').iCheck({

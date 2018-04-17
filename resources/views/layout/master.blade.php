@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="/css//theme/AdminLTE.min.css">
   <!-- Theme color -->
   <link rel="stylesheet" href="/css/theme/skin-blue.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/css/vendor/dataTables.bootstrap.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,10 +64,36 @@
 <script src="/js/theme/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/js/theme/demo.js"></script>
+<!-- DataTables -->
+<script src="/js/vendor/jquery.dataTables.min.js"></script>
+<script src="/js/vendor/dataTables.bootstrap.min.js"></script>
+
+<!-- jQuery Validate -->
+<script src="/js/vendor/jquery.validate.min.js"></script>
+<!-- Custom Form Validation -->
+<script src="/js/vendor/form-validation.js"></script>
+
+<!-- page script -->
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree()
   })
 </script>
+
+<script>
+  $(function () {
+    $('#example1').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : false,
+      'info'        : true,
+      'autoWidth'   : true
+    })
+  })
+</script>
+
+@yield('ajax')
+
 </body>
 </html>
