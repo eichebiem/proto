@@ -21,7 +21,11 @@ class RoomController extends Controller
 
     public function store(Request $r)
     {
-        return $r;
+        $room = new Room;
+        $room->name = $r->name;
+        $room->save();
+
+        return response()->json();
     }
 
 }

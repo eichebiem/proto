@@ -63,7 +63,15 @@
                     <h3 class="box-title">Create Room</h3>
                </div>
 
-               <form id="form-validate" method="POST">
+
+               <!-- Success Message -->
+               <div class="alert alert-success" style="display:none;" id="alert_message">
+                    <i class="fa fa-check"></i> gg
+               </div>
+               <!-- !Success Message -->
+
+
+               <form id="form-validate">
 
                     @csrf
                
@@ -73,7 +81,7 @@
                               <label for="name" class="col-sm-2 control-label">Room Name</label>
 
                               <div class="col-sm-5">
-                                   <input type="text" class="form-control" id="name" placeholder="Room Name" name="name">
+                                   <input type="text" class="form-control" id="room_name" placeholder="Room Name" name="name">
                               </div>
                          </div>
 
@@ -101,12 +109,59 @@
 @section('ajax')
 <script>
 
-     $('#form-validate').on('submit', function(e) {
-		e.preventDefault();
-		console.log('prevented');
-	});
+     $(function(){
 
-     
+          $.validator.setDefaults({
+               errorClass: 'help-block',
+               highlight: function(element) {
+                    $(element)
+                         .closest('.form-group')
+                         .addClass('has-error');
+               },
+               unhighlight: function(element) {
+                    $(element)
+                         .closest('.form-group')
+                         .removeClass('has-error');
+               }
+          });
+
+          $('#form-validate').validate({
+
+               rules: {
+                    name: {
+                         required: true,
+                         minlength: 5
+                    }
+               },
+
+               messages: {
+                    name: {
+                         required: "Room Name is required"
+                    }
+               },
+
+               submitHandler: function(){
+                    var room_name = $('#room_name').val();
+
+                    $.ajax({
+                         type: 'POST',
+                         url: '/settings/room',
+                         data: {
+                              name:room_name
+                         },
+                         success: function(data){
+                              $('#alert_message').show();
+                              $('#alert_message').delay(10000).fadeOut();
+                              $('#room_name').val('');
+                              // console.log('data saved');
+                              window.location.reload();
+                         }
+                    });
+               }
+
+          });
+
+     });
 
 </script>
 @endsection

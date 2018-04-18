@@ -71,24 +71,17 @@
 
 <!-- jQuery Validate -->
 <script src="/js/vendor/jquery.validate.min.js"></script>
-<!-- Custom Form Validation -->
-<script src="/js/vendor/form-validation.js"></script>
 
 <!-- page script -->
 <script>
-     $.ajaxSetup({
-          headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               }
-     });
-     
      $(document).ready(function () {
-          $('.sidebar-menu').tree()
-     })
-</script>
 
-<script>
-     $(function () {
+          $.ajaxSetup({
+              headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+          });
+          
+          $('.sidebar-menu').tree()
+
           $('#example1').DataTable({
                'paging'      : true,
                'lengthChange': true,
@@ -100,6 +93,7 @@
      })
 </script>
 
+<!-- Custom Form Validation -->
 @yield('ajax')
 
 </body>
