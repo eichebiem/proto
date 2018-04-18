@@ -80,7 +80,7 @@
                          <div class="form-group">
                               <label for="room_name" class="col-sm-2 control-label">Room Name</label>
 
-                              <div class="col-sm-5">
+                              <div class="col-sm-10">
                                    <input type="text" class="form-control" id="room_name" placeholder="Room Name" name="name">
                               </div>
                          </div>

@@ -5,10 +5,10 @@
 <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <section class="content-header">
-          <h1>Grade Level</h1>
+          <h1>Curriculum</h1>
           <ol class="breadcrumb">
           <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
-          <li class="active">Grade Level</li>
+          <li class="active">Curriculum</li>
           </ol>
      </section>
 
@@ -19,7 +19,7 @@
           <div class="box box-success">
 
                <div class="box-header with-border">
-                    <h3 class="box-title">Grade Levels</h3>
+                    <h3 class="box-title">Curriculum List</h3>
                </div>
                
                <div class="box-body">
@@ -28,15 +28,15 @@
 
                          <thead>
                               <tr>
-                                   <th>Grade Name</th>
+                                   <th>Curriculum Name</th>
                                    <th>Action</th>
                               </tr>
                          </thead>
 
                          <tbody>
-                              @foreach($levels as $level)
+                              @foreach($curriculums as $curriculum)
                                    <tr>
-                                        <td>{{ $level->name }}</td>
+                                        <td>{{ $curriculum->name }}</td>
                                         <td>
                                              <button type="button" class="btn btn-warning">Edit</button>
 
@@ -60,13 +60,13 @@
           <div class="box box-primary">
 
                <div class="box-header with-border">
-                    <h3 class="box-title">Create Grade Level</h3>
+                    <h3 class="box-title">Add Curriculum</h3>
                </div>
 
 
                <!-- Success Message -->
                <div class="alert alert-success" style="display:none;" id="alert_message">
-                    <i class="fa fa-check"></i> Grade Level successfully created.
+                    <i class="fa fa-check"></i> Curriculum successfully created.
                </div>
                <!-- !Success Message -->
 
@@ -82,6 +82,28 @@
 
                               <div class="col-sm-10">
                                    <input type="text" class="form-control" id="grade_name" placeholder="Grade Name" name="name">
+                              </div>
+                         </div>
+
+                         <br>
+                         <br>
+
+                         <div class="form-group">
+                              <label for="grade_name" class="col-sm-2 control-label">Grade Name</label>
+
+                              <div class="col-sm-10">
+                                   <input type="text" class="form-control" id="grade_name" placeholder="Grade Name" name="name">
+                              </div>
+                         </div>
+
+                         <br>
+                         <br>
+
+                         <div class="form-group">
+                              <label for="grade_name" class="col-sm-2 control-label">Details</label>
+
+                              <div class="col-sm-10">
+                                   <textarea name="" id="grade_name" class="form-control" placeholder="Grade Name" cols="30" rows="5"></textarea>
                               </div>
                          </div>
 

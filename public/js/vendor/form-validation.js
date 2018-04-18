@@ -52,8 +52,8 @@ $(document).ready(function(){
             }
         },
 
-        submitHandler: function(){
-            
+        submitHandler: function(form){
+            form.submit();
         }
 
     });
