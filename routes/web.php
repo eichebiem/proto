@@ -15,7 +15,7 @@ Route::post('/settings/room', 'RoomController@store');
 Route::get('/settings/level', 'LevelController@index');
 Route::post('/settings/level', 'LevelController@store');
 
-Route::get('/settings/curriculum', 'CurriculumController@index');
-Route::post('/settings/curriculum', 'CurriculumController@store');
+Route::get('/settings/curriculum', 'CurrController@index');
+Route::post('/settings/curriculum', 'CurrController@store');
 // !.settings
 

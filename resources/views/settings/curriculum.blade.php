@@ -78,10 +78,10 @@
                     <div class="box-body">
                            
                          <div class="form-group">
-                              <label for="grade_name" class="col-sm-2 control-label">Grade Name</label>
+                              <label for="curriculum_name" class="col-sm-2 control-label">Curriculum Name</label>
 
                               <div class="col-sm-10">
-                                   <input type="text" class="form-control" id="grade_name" placeholder="Grade Name" name="name">
+                                   <input type="text" class="form-control" id="curriculum_name" placeholder="Curriculum Name" name="name">
                               </div>
                          </div>
 
@@ -89,10 +89,16 @@
                          <br>
 
                          <div class="form-group">
-                              <label for="grade_name" class="col-sm-2 control-label">Grade Name</label>
+                              <label for="grade_id" class="col-sm-2 control-label">Grade Level</label>
 
                               <div class="col-sm-10">
-                                   <input type="text" class="form-control" id="grade_name" placeholder="Grade Name" name="name">
+                                   <select name="grade_id" id="grade_id" class="form-control">
+                                        <option value="" selected disabled>Select Grade Level</option>
+
+                                        @foreach($levels as $level)
+                                             <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                        @endforeach
+                                   </select>
                               </div>
                          </div>
 
@@ -100,10 +106,10 @@
                          <br>
 
                          <div class="form-group">
-                              <label for="grade_name" class="col-sm-2 control-label">Details</label>
+                              <label for="curriculum_details" class="col-sm-2 control-label">Details</label>
 
                               <div class="col-sm-10">
-                                   <textarea name="" id="grade_name" class="form-control" placeholder="Grade Name" cols="30" rows="5"></textarea>
+                                   <textarea name="details" id="curriculum_details" class="form-control" placeholder="Grade Name" cols="30" rows="5"></textarea>
                               </div>
                          </div>
 
@@ -153,29 +159,48 @@
                     name: {
                          required: true,
                          minlength: 5
-                    }
+                    },
+                    grade_id: {
+                         required: true,
+                    },
+                    details: {
+                         required: true,
+                         minlength: 5
+                    },
                },
 
                messages: {
                     name: {
                          required: "Room Name is required"
+                    },
+                    grade_id: {
+                         required: "Grade Level is required"
+                    },
+                    details: {
+                         required: "Details is required"
                     }
                },
 
                submitHandler: function(){
-                    var grade_name = $('#grade_name').val();
+                    var curriculum_name = $('#curriculum_name').val();
+                    var grade_id = $('#grade_id').val();
+                    var curriculum_details = $('#curriculum_details').val();
 
                     $.ajax({
                          type: 'POST',
-                         url: '/settings/level',
+                         url: '/settings/curriculum',
                          data: {
-                              name:grade_name
+                              'name':curriculum_name,
+                              'grade_id':grade_id,
+                              'details':curriculum_details
                          },
                          success: function(data){
                               $('#alert_message').show();
                               $('#alert_message').delay(10000).fadeOut();
-                              $('#grade_name').val('');
-                              // console.log('data saved');
+                              $('#curriculum_name').val('');
+                              $('#grade_id').val('');
+                              $('#curriculum_details').val('');
+                              // console.log(data);
                               setTimeout('location.reload(true);', 3000);
                          }
                     });

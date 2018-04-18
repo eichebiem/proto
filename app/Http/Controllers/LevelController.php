@@ -21,9 +21,9 @@ class LevelController extends Controller
 
     public function store(Request $r)
     {
-        $room = new Level;
-        $room->name = $r->name;
-        $room->save();
+        $level = new Level;
+        $level->name = $r->name;
+        $level->save();
 
         return response()->json();
     }

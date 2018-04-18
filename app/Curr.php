@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Curriculum extends Model
+class Curr extends Model
 {
     //
 }
