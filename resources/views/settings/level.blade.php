@@ -5,10 +5,10 @@
 <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <section class="content-header">
-          <h1>Room</h1>
+          <h1>Grade Level</h1>
           <ol class="breadcrumb">
           <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
-          <li class="active">Room</li>
+          <li class="active">Grade Level</li>
           </ol>
      </section>
 
@@ -19,7 +19,7 @@
           <div class="box box-success">
 
                <div class="box-header with-border">
-                    <h3 class="box-title">List of Rooms</h3>
+                    <h3 class="box-title">Grade Levels</h3>
                </div>
                
                <div class="box-body">
@@ -28,15 +28,15 @@
 
                          <thead>
                               <tr>
-                                   <th>Room Name</th>
+                                   <th>Grade Name</th>
                                    <th>Action</th>
                               </tr>
                          </thead>
 
                          <tbody>
-                              @foreach($rooms as $room)
+                              @foreach($levels as $level)
                                    <tr>
-                                        <td>{{ $room->name }}</td>
+                                        <td>{{ $level->name }}</td>
                                         <td>
                                              <button type="button" class="btn btn-warning">Edit</button>
 
@@ -60,13 +60,13 @@
           <div class="box box-primary">
 
                <div class="box-header with-border">
-                    <h3 class="box-title">Create Room</h3>
+                    <h3 class="box-title">Create Grade Level</h3>
                </div>
 
 
                <!-- Success Message -->
                <div class="alert alert-success" style="display:none;" id="alert_message">
-                    <i class="fa fa-check"></i> Room successfully created.
+                    <i class="fa fa-check"></i> Grade Level successfully created.
                </div>
                <!-- !Success Message -->
 
@@ -78,10 +78,10 @@
                     <div class="box-body">
                            
                          <div class="form-group">
-                              <label for="room_name" class="col-sm-2 control-label">Room Name</label>
+                              <label for="grade_name" class="col-sm-2 control-label">Grade Name</label>
 
                               <div class="col-sm-5">
-                                   <input type="text" class="form-control" id="room_name" placeholder="Room Name" name="name">
+                                   <input type="text" class="form-control" id="grade_name" placeholder="Grade Name" name="name">
                               </div>
                          </div>
 
@@ -141,18 +141,18 @@
                },
 
                submitHandler: function(){
-                    var room_name = $('#room_name').val();
+                    var grade_name = $('#grade_name').val();
 
                     $.ajax({
                          type: 'POST',
-                         url: '/settings/room',
+                         url: '/settings/level',
                          data: {
-                              name:room_name
+                              name:grade_name
                          },
                          success: function(data){
                               $('#alert_message').show();
                               $('#alert_message').delay(10000).fadeOut();
-                              $('#room_name').val('');
+                              $('#grade_name').val('');
                               // console.log('data saved');
                               setTimeout('location.reload(true);', 3000);
                          }

@@ -109,11 +109,9 @@
 
                <li><a href="/settings/room">Room</a></li>
 
-               <li><a href="#">Department</a></li>
+               <li><a href="/settings/level">Grade Level</a></li>
 
-               <li><a href="#">Course</a></li>
-
-               <li><a href="#">Curriculum</a></li>
+               <li><a href="/settings/curriculum">Curriculum</a></li>
 
                <li><a href="#">Grade</a></li>
 

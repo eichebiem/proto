@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Room;
+use App\Level;
 
-class RoomController extends Controller
+class LevelController extends Controller
 {
     public function __construct()
     {
@@ -14,14 +14,14 @@ class RoomController extends Controller
 
     public function index()
     {
-        $rooms = Room::latest()->get();
+        $levels = Level::latest()->get();
 
-        return view('settings.room', compact('rooms'));
+        return view('settings.level', compact('levels'));
     }
 
     public function store(Request $r)
     {
-        $room = new Room;
+        $room = new Level;
         $room->name = $r->name;
         $room->save();
 
