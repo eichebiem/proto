@@ -5,10 +5,10 @@
 <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <section class="content-header">
-          <h1>Home</h1>
+          <h1>Reminders</h1>
           <ol class="breadcrumb">
           <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
-          <li class="active">Dashboard</li>
+          <li class="active">Reminders</li>
           </ol>
      </section>
 
@@ -19,7 +19,7 @@
           <div class="box box-success">
 
                <div class="box-header with-border">
-                    <h3 class="box-title">Reminders</h3>
+                    <h3 class="box-title">List of Reminders</h3>
                </div>
                
                <div class="box-body">
@@ -31,6 +31,8 @@
                                    <th>Posted By</th>
                                    <th>Message</th>
                                    <th>Date Posted</th>
+                                   <th>Status</th>
+                                   <th>Action</th>
                               </tr>
                          </thead>
 
@@ -40,6 +42,12 @@
                                         <td>{{ $reminder->user->name }}</td>
                                         <td>{!! $reminder->content !!}</td>
                                         <td>{{ $reminder->created_at->toDayDateTimeString() }}</td>
+                                        <td>@if($reminder->status == 1) <button type="button" class="btn btn-success btn-xs">Active</button> @else <button type="button" class="btn btn-danger btn-xs">Inactive</button> @endif</td>
+                                        <td>
+                                             <button type="button" class="btn btn-warning">Edit</button>
+
+                                             <button type="button" class="btn btn-danger">Delete</button>
+                                        </td>
                                    </tr>
                               @endforeach
                               

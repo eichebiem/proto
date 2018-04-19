@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Reminder;
+
 class DashboardController extends Controller
 {
     public function __construct()
@@ -13,7 +15,9 @@ class DashboardController extends Controller
 
     public function show()
     {
-        return view('dashboard.home');
+        $reminders = Reminder::where('status', 1)->get();
+
+        return view('dashboard.home', compact('reminders'));
     }
 
 }

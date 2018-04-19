@@ -28,7 +28,7 @@
 
 
           <li>
-          <a href="#">
+          <a href="/home">
                <i class="fa fa-home"></i>
                <span>Home</span>
                <span class="pull-right-container">
@@ -70,9 +70,9 @@
           </a>
           <ul class="treeview-menu">
 
-               <li><a href="#">Create Reminder</a></li>
+               <li><a href="/reminders/create">Create Reminder</a></li>
 
-               <li><a href="#">Reminder's Panel</a></li>
+               <li><a href="/reminders">Reminder's Panel</a></li>
 
           </ul>
           </li>

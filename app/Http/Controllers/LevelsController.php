@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Level;
 
-class LevelController extends Controller
+class LevelsController extends Controller
 {
     public function __construct()
     {

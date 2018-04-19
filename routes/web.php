@@ -8,12 +8,20 @@ Route::get('/logout', 'SessionsController@destroy');
 
 Route::get('/home', 'DashboardController@show');
 
-// settings
-Route::get('/settings/room', 'RoomController@index');
-Route::post('/settings/room', 'RoomController@store');
+// reminders
+Route::get('/reminders/create', 'RemindersController@create');
+Route::post('/reminders/create', 'RemindersController@store');
 
-Route::get('/settings/level', 'LevelController@index');
-Route::post('/settings/level', 'LevelController@store');
+Route::get('/reminders', 'RemindersController@index');
+
+// !.reminders
+
+// settings
+Route::get('/settings/room', 'RoomsController@index');
+Route::post('/settings/room', 'RoomsController@store');
+
+Route::get('/settings/level', 'LevelsController@index');
+Route::post('/settings/level', 'LevelsController@store');
 
 Route::get('/settings/curriculum', 'CurrController@index');
 Route::post('/settings/curriculum', 'CurrController@store');
