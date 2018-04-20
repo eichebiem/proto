@@ -31,5 +31,24 @@ class CurrController extends Controller
 
         return response()->json();
     }
+
+    public function edit(Curr $curriculum)
+    {
+        return view('settings.edit_curriculum', compact('curriculum'));
+    }
+
+    public function update($level, Request $request)
+    {
+        Level::find($level)->update(request(['name']));
+
+        return response()->json();
+    }
+
+    public function delete($level)
+    {
+        Level::destroy($level);
+
+        return response()->json();
+    }
     
 }

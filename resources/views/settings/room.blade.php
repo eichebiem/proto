@@ -176,6 +176,7 @@
                     type: 'orange',
                     typeAnimated: true,
                     icon: 'fa fa-warning',
+                    theme: 'dark',
                     buttons: {
                          confirm: {
                               text: 'Yes',
@@ -201,6 +202,7 @@
                     type: 'red',
                     typeAnimated: true,
                     icon: 'fa fa-warning',
+                    theme: 'dark',
                     buttons: {
                          confirm: {
                               text: 'Yes',

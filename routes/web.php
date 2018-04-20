@@ -37,5 +37,8 @@ Route::post('/settings/level/{level}', 'LevelsController@delete');
 
 Route::get('/settings/curriculum', 'CurrController@index');
 Route::post('/settings/curriculum', 'CurrController@store');
+Route::get('/settings/curriculum/{curriculum}', 'CurrController@edit');
+Route::patch('/settings/curriculum/{curriculum}', 'CurrController@update');
+Route::post('/settings/curriculum/{curriculum}', 'CurrController@delete');
 // !.settings
 

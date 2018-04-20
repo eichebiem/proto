@@ -5,68 +5,27 @@
 <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <section class="content-header">
-          <h1>Curriculum</h1>
+          <h1>Update Curriculum</h1>
           <ol class="breadcrumb">
           <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
-          <li class="active">Curriculum</li>
+          <li class="active">Update Curriculum</li>
           </ol>
      </section>
 
      <!-- Main content -->
      <section class="content">
 
-          <!-- list of curriculum box -->
-          <div class="box box-success">
-
-               <div class="box-header with-border">
-                    <h3 class="box-title">Curriculum List</h3>
-               </div>
-               
-               <div class="box-body">
-               
-                    <table id="example1" class="table table-bordered table-striped">
-
-                         <thead>
-                              <tr>
-                                   <th>Curriculum Name</th>
-                                   <th>Action</th>
-                              </tr>
-                         </thead>
-
-                         <tbody>
-                              @foreach($curriculums as $curriculum)
-                                   <tr>
-                                        <td>{{ $curriculum->name }}</td>
-                                        <td>
-                                             <button type="button" class="btn btn-warning btn-sm edit" value="{{ $curriculum->id }}"><i class="fa fa-edit"></i> Edit</button>
-
-                                             <button type="button" class="btn btn-danger btn-sm delete" value="{{ $curriculum->id }}"><i class="fa fa-times"></i> Delete</button>
-                                        </td>
-                                   </tr>
-                              @endforeach
-                              
-                         </tbody>
-
-                    </table>
-
-               </div>
-               <!-- /.box-body -->
-
-          </div>
-          <!-- /.box -->
-
-
-          <!-- create curriculum box -->
+          <!-- update curriculum box -->
           <div class="box box-primary">
 
                <div class="box-header with-border">
-                    <h3 class="box-title">Add Curriculum</h3>
+                    <h3 class="box-title">Curriculum</h3>
                </div>
 
 
                <!-- Success Message -->
                <div class="alert alert-success" style="display:none;" id="alert_message">
-                    <i class="fa fa-check"></i> Curriculum successfully created.
+                    <i class="fa fa-check"></i> Curriculum successfully updated.
                </div>
                <!-- !Success Message -->
 
@@ -206,65 +165,6 @@
                     });
                }
 
-          });
-
-          $('.edit').click(function(){
-               var curriculum_id = $(this).val();
-
-               $.confirm({
-                    title: 'Confirm Action',
-                    content: 'Edit this Curriculum?',
-                    type: 'orange',
-                    typeAnimated: true,
-                    icon: 'fa fa-warning',
-                    theme: 'dark',
-                    buttons: {
-                         confirm: {
-                              text: 'Yes',
-                              btnClass: 'btn-success',
-                              action: function () {
-                                   location.href = '/settings/curriculum/'+curriculum_id;
-                              }
-                         },
-                         cancel: {
-                              text: 'No',
-                              btnClass: 'btn-danger'
-                         }
-                    }
-               });
-          });
-
-          $('.delete').click(function(){
-               var level_id = $(this).val();
-
-               $.confirm({
-                    title: 'Confirm Action',
-                    content: 'Delete this Curriculum?',
-                    type: 'red',
-                    typeAnimated: true,
-                    icon: 'fa fa-warning',
-                    theme: 'dark',
-                    buttons: {
-                         confirm: {
-                              text: 'Yes',
-                              btnClass: 'btn-success',
-                              action: function () {
-                                   $.ajax({
-                                        type: 'POST',
-                                        url: '/settings/level/'+level_id,
-                                        success: function(data){
-                                             $('#alert_delete').show();
-                                             setTimeout('location.reload(true);', 3000);
-                                        }
-                                   });
-                              }
-                         },
-                         cancel: {
-                              text: 'No',
-                              btnClass: 'btn-danger'
-                         }
-                    }
-               });
           });
 
      });
