@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Level;
+use App\Program;
 use App\Curr;
 
 class CurrController extends Controller
@@ -16,16 +16,16 @@ class CurrController extends Controller
     public function index()
     {
         $curriculums = Curr::latest()->get();
-        $levels = Level::all();
+        $programs = Program::all();
 
-        return view('settings.curriculum', compact('curriculums', 'levels'));
+        return view('settings.curriculum', compact('curriculums', 'programs'));
     }
 
     public function store(Request $r)
     {
         $curriculum = new Curr;
         $curriculum->name = $r->name;
-        $curriculum->level_id = $r->level_id;
+        $curriculum->program_id = $r->program_id;
         $curriculum->details = $r->details;
         $curriculum->save();
 
@@ -34,21 +34,21 @@ class CurrController extends Controller
 
     public function edit(Curr $curriculum)
     {
-        $levels = Level::all();
+        $programs = Program::all();
 
-        return view('settings.edit_curriculum', compact('curriculum', 'levels'));
+        return view('settings.edit_curriculum', compact('curriculum', 'programs'));
     }
 
-    public function update($level, Request $request)
+    public function update($curriculum, Request $request)
     {
-        Level::find($level)->update(request(['name']));
+        Curr::find($curriculum)->update(request(['name', 'program_id', 'details']));
 
         return response()->json();
     }
 
-    public function delete($level)
+    public function delete($curriculum)
     {
-        Level::destroy($level);
+        Curr::destroy($curriculum);
 
         return response()->json();
     }

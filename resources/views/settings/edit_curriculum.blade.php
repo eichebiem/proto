@@ -15,47 +15,6 @@
      <!-- Main content -->
      <section class="content">
 
-          <!-- list of curriculum box -->
-          <div class="box box-success">
-
-               <div class="box-header with-border">
-                    <h3 class="box-title">Curriculum List</h3>
-               </div>
-               
-               <div class="box-body">
-               
-                    <table id="example1" class="table table-bordered table-striped">
-
-                         <thead>
-                              <tr>
-                                   <th>Curriculum Name</th>
-                                   <th>Action</th>
-                              </tr>
-                         </thead>
-
-                         <tbody>
-                              @foreach($curriculums as $curriculum)
-                                   <tr>
-                                        <td>{{ $curriculum->name }}</td>
-                                        <td>
-                                             <button type="button" class="btn btn-warning btn-sm edit" value="{{ $curriculum->id }}"><i class="fa fa-edit"></i> Edit</button>
-
-                                             <button type="button" class="btn btn-danger btn-sm delete" value="{{ $curriculum->id }}"><i class="fa fa-times"></i> Delete</button>
-                                        </td>
-                                   </tr>
-                              @endforeach
-                              
-                         </tbody>
-
-                    </table>
-
-               </div>
-               <!-- /.box-body -->
-
-          </div>
-          <!-- /.box -->
-
-
           <!-- create curriculum box -->
           <div class="box box-primary">
 
@@ -66,7 +25,7 @@
 
                <!-- Success Message -->
                <div class="alert alert-success" style="display:none;" id="alert_message">
-                    <i class="fa fa-check"></i> Curriculum successfully created.
+                    <i class="fa fa-check"></i> Curriculum successfully updated.
                </div>
                <!-- !Success Message -->
 
@@ -80,8 +39,10 @@
                          <div class="form-group">
                               <label for="curriculum_name" class="col-sm-2 control-label">Curriculum Name</label>
 
+                              <input type="hidden" id="curriculum_id" value="{{ $curriculum->id }}">
+
                               <div class="col-sm-10">
-                                   <input type="text" class="form-control" id="curriculum_name" placeholder="Curriculum Name" name="name">
+                                   <input type="text" class="form-control" id="curriculum_name" placeholder="Curriculum Name" name="name" value="{{ $curriculum->name }}">
                               </div>
                          </div>
 
@@ -89,14 +50,12 @@
                          <br>
 
                          <div class="form-group">
-                              <label for="grade_id" class="col-sm-2 control-label">Grade Level</label>
+                              <label for="program_id" class="col-sm-2 control-label">Program Description</label>
 
                               <div class="col-sm-10">
-                                   <select name="level_id" id="level_id" class="form-control">
-                                        <option value="" selected disabled>Select Grade Level</option>
-
-                                        @foreach($levels as $level)
-                                             <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                   <select name="program_id" id="program_id" class="form-control">
+                                        @foreach($programs as $program)
+                                             <option value="{{ $program->id }}" {{ ($program->id == $curriculum->program_id) ? 'selected' : '' }}>{{ $program->description }}</option>
                                         @endforeach
                                    </select>
                               </div>
@@ -109,7 +68,7 @@
                               <label for="curriculum_details" class="col-sm-2 control-label">Details</label>
 
                               <div class="col-sm-10">
-                                   <textarea name="details" id="curriculum_details" class="form-control" placeholder="Grade Name" cols="30" rows="5"></textarea>
+                                   <textarea name="details" id="curriculum_details" class="form-control" placeholder="Grade Name" cols="30" rows="5">{{ $curriculum->details }}</textarea>
                               </div>
                          </div>
 
@@ -160,7 +119,7 @@
                          required: true,
                          minlength: 5
                     },
-                    level_id: {
+                    program_id: {
                          required: true,
                     },
                     details: {
@@ -173,7 +132,7 @@
                     name: {
                          required: "Room Name is required"
                     },
-                    level_id: {
+                    program_id: {
                          required: "Grade Level is required"
                     },
                     details: {
@@ -183,88 +142,30 @@
 
                submitHandler: function(){
                     var curriculum_name = $('#curriculum_name').val();
-                    var level_id = $('#level_id').val();
+                    var program_id = $('#program_id').val();
                     var curriculum_details = $('#curriculum_details').val();
+                    var curriculum_id = $('#curriculum_id').val();
 
                     $.ajax({
-                         type: 'POST',
-                         url: '/settings/curriculum',
+                         type: 'PATCH',
+                         url: '/settings/curriculum/'+curriculum_id,
                          data: {
                               'name':curriculum_name,
-                              'level_id':level_id,
+                              'program_id':program_id,
                               'details':curriculum_details
                          },
                          success: function(data){
                               $('#alert_message').show();
                               $('#alert_message').delay(10000).fadeOut();
                               $('#curriculum_name').val('');
-                              $('#level_id').val('');
+                              $('#program_id').val('');
                               $('#curriculum_details').val('');
                               // console.log(data);
-                              setTimeout('location.reload(true);', 3000);
+                              setTimeout('location.href="/settings/curriculum";', 3000);
                          }
                     });
                }
 
-          });
-
-          $('.edit').click(function(){
-               var curriculum_id = $(this).val();
-
-               $.confirm({
-                    title: 'Confirm Action',
-                    content: 'Edit this Curriculum?',
-                    type: 'orange',
-                    typeAnimated: true,
-                    icon: 'fa fa-warning',
-                    theme: 'dark',
-                    buttons: {
-                         confirm: {
-                              text: 'Yes',
-                              btnClass: 'btn-success',
-                              action: function () {
-                                   location.href = '/settings/curriculum/'+curriculum_id;
-                              }
-                         },
-                         cancel: {
-                              text: 'No',
-                              btnClass: 'btn-danger'
-                         }
-                    }
-               });
-          });
-
-          $('.delete').click(function(){
-               var level_id = $(this).val();
-
-               $.confirm({
-                    title: 'Confirm Action',
-                    content: 'Delete this Curriculum?',
-                    type: 'red',
-                    typeAnimated: true,
-                    icon: 'fa fa-warning',
-                    theme: 'dark',
-                    buttons: {
-                         confirm: {
-                              text: 'Yes',
-                              btnClass: 'btn-success',
-                              action: function () {
-                                   $.ajax({
-                                        type: 'POST',
-                                        url: '/settings/level/'+level_id,
-                                        success: function(data){
-                                             $('#alert_delete').show();
-                                             setTimeout('location.reload(true);', 3000);
-                                        }
-                                   });
-                              }
-                         },
-                         cancel: {
-                              text: 'No',
-                              btnClass: 'btn-danger'
-                         }
-                    }
-               });
           });
 
      });

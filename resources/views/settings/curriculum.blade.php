@@ -21,6 +21,12 @@
                <div class="box-header with-border">
                     <h3 class="box-title">Curriculum List</h3>
                </div>
+
+               <!-- Success Message -->
+               <div class="alert alert-success" style="display:none;" id="alert_delete">
+                    <i class="fa fa-check"></i> Curriculum successfully deleted.
+               </div>
+               <!-- !Success Message -->
                
                <div class="box-body">
                
@@ -89,14 +95,14 @@
                          <br>
 
                          <div class="form-group">
-                              <label for="grade_id" class="col-sm-2 control-label">Grade Level</label>
+                              <label for="program_id" class="col-sm-2 control-label">Program Description</label>
 
                               <div class="col-sm-10">
-                                   <select name="level_id" id="level_id" class="form-control">
-                                        <option value="" selected disabled>Select Grade Level</option>
+                                   <select name="program_id" id="program_id" class="form-control">
+                                        <option value="" selected disabled>Select Program</option>
 
-                                        @foreach($levels as $level)
-                                             <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                        @foreach($programs as $program)
+                                             <option value="{{ $program->id }}">{{ $program->description }}</option>
                                         @endforeach
                                    </select>
                               </div>
@@ -160,7 +166,7 @@
                          required: true,
                          minlength: 5
                     },
-                    level_id: {
+                    program_id: {
                          required: true,
                     },
                     details: {
@@ -173,8 +179,8 @@
                     name: {
                          required: "Room Name is required"
                     },
-                    level_id: {
-                         required: "Grade Level is required"
+                    program_id: {
+                         required: "Program Description is required"
                     },
                     details: {
                          required: "Details is required"
@@ -183,7 +189,7 @@
 
                submitHandler: function(){
                     var curriculum_name = $('#curriculum_name').val();
-                    var level_id = $('#level_id').val();
+                    var program_id = $('#program_id').val();
                     var curriculum_details = $('#curriculum_details').val();
 
                     $.ajax({
@@ -191,7 +197,7 @@
                          url: '/settings/curriculum',
                          data: {
                               'name':curriculum_name,
-                              'level_id':level_id,
+                              'program_id':program_id,
                               'details':curriculum_details
                          },
                          success: function(data){
@@ -235,7 +241,7 @@
           });
 
           $('.delete').click(function(){
-               var level_id = $(this).val();
+               var curriculum_id = $(this).val();
 
                $.confirm({
                     title: 'Confirm Action',
@@ -251,7 +257,7 @@
                               action: function () {
                                    $.ajax({
                                         type: 'POST',
-                                        url: '/settings/level/'+level_id,
+                                        url: '/settings/curriculum/'+curriculum_id,
                                         success: function(data){
                                              $('#alert_delete').show();
                                              setTimeout('location.reload(true);', 3000);
