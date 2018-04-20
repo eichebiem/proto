@@ -28,4 +28,23 @@ class LevelsController extends Controller
         return response()->json();
     }
 
+    public function edit(Level $level)
+    {
+        return view('settings.edit_level', compact('level'));
+    }
+
+    public function update($level, Request $request)
+    {
+        Level::find($level)->update(request(['name']));
+
+        return response()->json();
+    }
+
+    public function delete($level)
+    {
+        Level::destroy($level);
+
+        return response()->json();
+    }
+
 }

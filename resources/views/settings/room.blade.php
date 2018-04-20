@@ -21,6 +21,12 @@
                <div class="box-header with-border">
                     <h3 class="box-title">List of Rooms</h3>
                </div>
+
+               <!-- Success Message -->
+               <div class="alert alert-success" style="display:none;" id="alert_delete">
+                    <i class="fa fa-check"></i> Room successfully deleted.
+               </div>
+               <!-- !Success Message -->
                
                <div class="box-body">
                
@@ -38,9 +44,9 @@
                                    <tr>
                                         <td>{{ $room->name }}</td>
                                         <td>
-                                             <button type="button" class="btn btn-warning">Edit</button>
+                                             <button type="button" class="btn btn-warning btn-sm edit" value="{{ $room->id }}"><i class="fa fa-edit"></i> Edit</button>
 
-                                             <button type="button" class="btn btn-danger">Delete</button>
+                                             <button type="button" class="btn btn-danger btn-sm delete" value="{{ $room->id }}"><i class="fa fa-times"></i> Delete</button>
                                         </td>
                                    </tr>
                               @endforeach
@@ -89,9 +95,9 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                         <button type="reset" class="btn btn-warning pull-right"><i class="fa fa-refresh"></i> Reset</button>
+                         <button type="reset" class="btn btn-warning btn-sm pull-right"><i class="fa fa-refresh"></i> Reset</button>
 
-                         <button type="submit" class="btn btn-success pull-right"><i class="fa fa-floppy-o"></i> Save</button>
+                         <button type="submit" class="btn btn-success btn-sm pull-right"><i class="fa fa-floppy-o"></i> Save</button>
                     </div>
                     <!-- /.box-footer -->
                </form>
@@ -130,7 +136,7 @@
                rules: {
                     name: {
                          required: true,
-                         minlength: 5
+                         minlength: 4
                     }
                },
 
@@ -159,6 +165,63 @@
                     });
                }
 
+          });
+
+          $('.edit').click(function(){
+               var room_id = $(this).val();
+
+               $.confirm({
+                    title: 'Confirm Action',
+                    content: 'Edit this room?',
+                    type: 'orange',
+                    typeAnimated: true,
+                    icon: 'fa fa-warning',
+                    buttons: {
+                         confirm: {
+                              text: 'Yes',
+                              btnClass: 'btn-success',
+                              action: function () {
+                                   location.href = '/settings/room/'+room_id;
+                              }
+                         },
+                         cancel: {
+                              text: 'No',
+                              btnClass: 'btn-danger'
+                         }
+                    }
+               });
+          });
+
+          $('.delete').click(function(){
+               var room_id = $(this).val();
+
+               $.confirm({
+                    title: 'Confirm Action',
+                    content: 'Delete this room?',
+                    type: 'red',
+                    typeAnimated: true,
+                    icon: 'fa fa-warning',
+                    buttons: {
+                         confirm: {
+                              text: 'Yes',
+                              btnClass: 'btn-success',
+                              action: function () {
+                                   $.ajax({
+                                        type: 'POST',
+                                        url: '/settings/room/'+room_id,
+                                        success: function(data){
+                                             $('#alert_delete').show();
+                                             setTimeout('location.reload(true);', 3000);
+                                        }
+                                   });
+                              }
+                         },
+                         cancel: {
+                              text: 'No',
+                              btnClass: 'btn-danger'
+                         }
+                    }
+               });
           });
 
      });

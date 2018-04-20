@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="/css/vendor/dataTables.bootstrap.min.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="/css/plugins/bootstrap3-wysihtml5.min.css">
+  <!-- jQuery Confirm -->
+  <link rel="stylesheet" href="/css/plugins/jquery-confirm.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -72,6 +74,8 @@
 <script src="/js/vendor/dataTables.bootstrap.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="/js/plugins/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- jQuery Confirm -->
+<script src="/js/plugins/jquery-confirm.min.js"></script>
 
 <!-- jQuery Validate -->
 <script src="/js/vendor/jquery.validate.min.js"></script>

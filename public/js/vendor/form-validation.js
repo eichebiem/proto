@@ -33,10 +33,6 @@ $(document).ready(function(){
             password: {
                 required: true,
                 minlength: 5
-            },
-            name: {
-                required: true,
-                minlength: 5
             }
         },
 

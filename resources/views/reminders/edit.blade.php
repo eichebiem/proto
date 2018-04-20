@@ -5,10 +5,10 @@
 <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <section class="content-header">
-          <h1>Create Reminder</h1>
+          <h1>Update Reminder</h1>
           <ol class="breadcrumb">
           <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
-          <li class="active">Create Reminder</li>
+          <li class="active">Update Reminder</li>
           </ol>
      </section>
 
@@ -24,14 +24,15 @@
 
                @include('partials.error')
                
-               <form action="/reminders/create" method="POST">
+               <form action="/reminders/{{ $reminder->id }}" method="POST">
 
                     @csrf
+                    {{ method_field('PATCH') }}
                     
                     <div class="box-body">
                     
                          <textarea class="textarea" placeholder="Place reminders here"
-                                   style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="content"></textarea>
+                                   style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="content">{{ $reminder->content }}</textarea>
                     
                     </div>
                     <!-- /.box-body -->

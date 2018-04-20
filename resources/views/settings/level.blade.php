@@ -15,12 +15,18 @@
      <!-- Main content -->
      <section class="content">
 
-          <!-- list of rooms box -->
+          <!-- list of grade levels box -->
           <div class="box box-success">
 
                <div class="box-header with-border">
                     <h3 class="box-title">Grade Levels</h3>
                </div>
+
+               <!-- Success Message -->
+               <div class="alert alert-success" style="display:none;" id="alert_delete">
+                    <i class="fa fa-check"></i> Grade Level successfully deleted.
+               </div>
+               <!-- !Success Message -->
                
                <div class="box-body">
                
@@ -38,9 +44,9 @@
                                    <tr>
                                         <td>{{ $level->name }}</td>
                                         <td>
-                                             <button type="button" class="btn btn-warning">Edit</button>
+                                             <button type="button" class="btn btn-warning btn-sm edit" value="{{ $level->id }}"><i class="fa fa-edit"></i> Edit</button>
 
-                                             <button type="button" class="btn btn-danger">Delete</button>
+                                             <button type="button" class="btn btn-danger btn-sm delete" value="{{ $level->id }}"><i class="fa fa-times"></i> Delete</button>
                                         </td>
                                    </tr>
                               @endforeach
@@ -56,7 +62,7 @@
           <!-- /.box -->
 
 
-          <!-- create room box -->
+          <!-- create grade level box -->
           <div class="box box-primary">
 
                <div class="box-header with-border">
@@ -89,9 +95,9 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                         <button type="reset" class="btn btn-warning pull-right"><i class="fa fa-refresh"></i> Reset</button>
+                         <button type="reset" class="btn btn-warning btn-sm pull-right"><i class="fa fa-refresh"></i> Reset</button>
 
-                         <button type="submit" class="btn btn-success pull-right"><i class="fa fa-floppy-o"></i> Save</button>
+                         <button type="submit" class="btn btn-success btn-sm pull-right"><i class="fa fa-floppy-o"></i> Save</button>
                     </div>
                     <!-- /.box-footer -->
                </form>
@@ -136,7 +142,7 @@
 
                messages: {
                     name: {
-                         required: "Room Name is required"
+                         required: "Grade Level is required"
                     }
                },
 
@@ -159,6 +165,63 @@
                     });
                }
 
+          });
+
+          $('.edit').click(function(){
+               var level_id = $(this).val();
+
+               $.confirm({
+                    title: 'Confirm Action',
+                    content: 'Edit this Grade Level?',
+                    type: 'orange',
+                    typeAnimated: true,
+                    icon: 'fa fa-warning',
+                    buttons: {
+                         confirm: {
+                              text: 'Yes',
+                              btnClass: 'btn-success',
+                              action: function () {
+                                   location.href = '/settings/level/'+level_id;
+                              }
+                         },
+                         cancel: {
+                              text: 'No',
+                              btnClass: 'btn-danger'
+                         }
+                    }
+               });
+          });
+
+          $('.delete').click(function(){
+               var level_id = $(this).val();
+
+               $.confirm({
+                    title: 'Confirm Action',
+                    content: 'Delete this room?',
+                    type: 'red',
+                    typeAnimated: true,
+                    icon: 'fa fa-warning',
+                    buttons: {
+                         confirm: {
+                              text: 'Yes',
+                              btnClass: 'btn-success',
+                              action: function () {
+                                   $.ajax({
+                                        type: 'POST',
+                                        url: '/settings/level/'+level_id,
+                                        success: function(data){
+                                             $('#alert_delete').show();
+                                             setTimeout('location.reload(true);', 3000);
+                                        }
+                                   });
+                              }
+                         },
+                         cancel: {
+                              text: 'No',
+                              btnClass: 'btn-danger'
+                         }
+                    }
+               });
           });
 
      });

@@ -28,4 +28,23 @@ class RoomsController extends Controller
         return response()->json();
     }
 
+    public function edit(Room $room)
+    {
+        return view('settings.edit_room', compact('room'));
+    }
+
+    public function update($room, Request $request)
+    {
+        Room::find($room)->update(request(['name']));
+
+        return response()->json();
+    }
+
+    public function delete($room)
+    {
+        Room::destroy($room);
+
+        return response()->json();
+    }
+
 }

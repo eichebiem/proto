@@ -29,4 +29,47 @@ class RemindersController extends Controller
         return view('reminders.all_reminders', compact('reminders'));
     }
 
+    public function update_active($reminder)
+    {
+        Reminder::find($reminder)->update(
+            [
+                'status' => '0'
+            ]
+        );
+
+        return response()->json();
+    }
+
+    public function update_inactive($reminder)
+    {
+        Reminder::find($reminder)->update(
+            [
+                'status' => '1'
+            ]
+        );
+
+        return response()->json();
+    }
+
+    public function edit(Reminder $reminder)
+    {
+        return view('reminders.edit', compact('reminder'));
+    }
+
+    public function update($reminder, ReminderRequest $request)
+    {
+        Reminder::find($reminder)->update(request([
+            'content'
+        ]));
+
+        return redirect('/reminders')->with('message', 'Reminder successfully updated!');
+    }
+
+    public function delete($reminder)
+    {
+        Reminder::destroy($reminder);
+
+        return response()->json();
+    }
+
 }

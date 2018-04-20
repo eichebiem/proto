@@ -38,9 +38,9 @@
                                    <tr>
                                         <td>{{ $curriculum->name }}</td>
                                         <td>
-                                             <button type="button" class="btn btn-warning">Edit</button>
+                                             <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button>
 
-                                             <button type="button" class="btn btn-danger">Delete</button>
+                                             <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Delete</button>
                                         </td>
                                    </tr>
                               @endforeach
@@ -117,9 +117,9 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                         <button type="reset" class="btn btn-warning pull-right"><i class="fa fa-refresh"></i> Reset</button>
+                         <button type="reset" class="btn btn-warning btn-sm pull-right"><i class="fa fa-refresh"></i> Reset</button>
 
-                         <button type="submit" class="btn btn-success pull-right"><i class="fa fa-floppy-o"></i> Save</button>
+                         <button type="submit" class="btn btn-success btn-sm pull-right"><i class="fa fa-floppy-o"></i> Save</button>
                     </div>
                     <!-- /.box-footer -->
                </form>
