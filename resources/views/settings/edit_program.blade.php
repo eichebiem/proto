@@ -5,27 +5,27 @@
 <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <section class="content-header">
-          <h1>Update Grade Level</h1>
+          <h1>Update Program</h1>
           <ol class="breadcrumb">
           <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
-          <li class="active">Update Grade Level</li>
+          <li class="active">Update Program</li>
           </ol>
      </section>
 
      <!-- Main content -->
      <section class="content">
 
-          <!-- update grade level box -->
+          <!-- update program box -->
           <div class="box box-primary">
 
                <div class="box-header with-border">
-                    <h3 class="box-title">Grade Level</h3>
+                    <h3 class="box-title">Program</h3>
                </div>
 
 
                <!-- Success Message -->
                <div class="alert alert-success" style="display:none;" id="alert_message">
-                    <i class="fa fa-check"></i> Grade Level successfully updated.
+                    <i class="fa fa-check"></i> Program successfully updated.
                </div>
                <!-- !Success Message -->
 
@@ -37,12 +37,12 @@
                     <div class="box-body">
                            
                          <div class="form-group">
-                              <label for="grade_name" class="col-sm-2 control-label">Grade Name</label>
+                              <label for="grade_name" class="col-sm-2 control-label">Program Description</label>
 
-                              <input type="hidden" id="grade_id" value="{{ $level->id }}">
+                              <input type="hidden" id="program_id" value="{{ $program->id }}">
 
                               <div class="col-sm-10">
-                                   <input type="text" class="form-control" id="grade_name" placeholder="Grade Name" name="name" value="{{ $level->name }}">
+                                   <input type="text" class="form-control" id="program_description" placeholder="Program Description" name="description" value="{{ $program->description }}">
                               </div>
                          </div>
 
@@ -89,34 +89,34 @@
           $('#form-validate').validate({
 
                rules: {
-                    name: {
+                    description: {
                          required: true,
                          minlength: 5
                     }
                },
 
                messages: {
-                    name: {
-                         required: "Grade Level is required"
+                    description: {
+                         required: "Program Description is required"
                     }
                },
 
                submitHandler: function(){
-                    var grade_name = $('#grade_name').val();
-                    var grade_id = $('#grade_id').val();
+                    var program_description = $('#program_description').val();
+                    var program_id = $('#program_id').val();
 
                     $.ajax({
                          type: 'PATCH',
-                         url: '/settings/level/'+grade_id,
+                         url: '/settings/program/'+program_id,
                          data: {
-                              name:grade_name
+                              description:program_description
                          },
                          success: function(data){
                               $('#alert_message').show();
                               $('#alert_message').delay(10000).fadeOut();
                               $('#grade_name').val('');
                               // console.log(data);
-                              setTimeout('location.href="/settings/level";', 3000);
+                              setTimeout('location.href="/settings/program";', 3000);
                          }
                     });
                }

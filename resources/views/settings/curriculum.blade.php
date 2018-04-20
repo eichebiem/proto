@@ -92,7 +92,7 @@
                               <label for="grade_id" class="col-sm-2 control-label">Grade Level</label>
 
                               <div class="col-sm-10">
-                                   <select name="grade_id" id="grade_id" class="form-control">
+                                   <select name="level_id" id="level_id" class="form-control">
                                         <option value="" selected disabled>Select Grade Level</option>
 
                                         @foreach($levels as $level)
@@ -160,7 +160,7 @@
                          required: true,
                          minlength: 5
                     },
-                    grade_id: {
+                    level_id: {
                          required: true,
                     },
                     details: {
@@ -173,7 +173,7 @@
                     name: {
                          required: "Room Name is required"
                     },
-                    grade_id: {
+                    level_id: {
                          required: "Grade Level is required"
                     },
                     details: {
@@ -183,7 +183,7 @@
 
                submitHandler: function(){
                     var curriculum_name = $('#curriculum_name').val();
-                    var grade_id = $('#grade_id').val();
+                    var level_id = $('#level_id').val();
                     var curriculum_details = $('#curriculum_details').val();
 
                     $.ajax({
@@ -191,14 +191,14 @@
                          url: '/settings/curriculum',
                          data: {
                               'name':curriculum_name,
-                              'grade_id':grade_id,
+                              'level_id':level_id,
                               'details':curriculum_details
                          },
                          success: function(data){
                               $('#alert_message').show();
                               $('#alert_message').delay(10000).fadeOut();
                               $('#curriculum_name').val('');
-                              $('#grade_id').val('');
+                              $('#level_id').val('');
                               $('#curriculum_details').val('');
                               // console.log(data);
                               setTimeout('location.reload(true);', 3000);

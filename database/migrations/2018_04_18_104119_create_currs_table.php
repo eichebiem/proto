@@ -16,7 +16,7 @@ class CreateCurrsTable extends Migration
         Schema::create('currs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('grade_id');
+            $table->integer('level_id');
             $table->string('details');
             $table->timestamps();
         });

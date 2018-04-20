@@ -109,7 +109,7 @@
 
                <li><a href="/settings/room">Room</a></li>
 
-               <li><a href="/settings/level">Grade Level</a></li>
+               <li><a href="/settings/program">Program</a></li>
 
                <li><a href="/settings/curriculum">Curriculum</a></li>
 

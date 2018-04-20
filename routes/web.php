@@ -29,11 +29,11 @@ Route::get('/settings/room/{room}', 'RoomsController@edit');
 Route::patch('/settings/room/{room}', 'RoomsController@update');
 Route::post('/settings/room/{room}', 'RoomsController@delete');
 
-Route::get('/settings/level', 'LevelsController@index');
-Route::post('/settings/level', 'LevelsController@store');
-Route::get('/settings/level/{level}', 'LevelsController@edit');
-Route::patch('/settings/level/{level}', 'LevelsController@update');
-Route::post('/settings/level/{level}', 'LevelsController@delete');
+Route::get('/settings/program', 'ProgramsController@index');
+Route::post('/settings/program', 'ProgramsController@store');
+Route::get('/settings/program/{program}', 'ProgramsController@edit');
+Route::patch('/settings/program/{program}', 'ProgramsController@update');
+Route::post('/settings/program/{program}', 'ProgramsController@delete');
 
 Route::get('/settings/curriculum', 'CurrController@index');
 Route::post('/settings/curriculum', 'CurrController@store');

@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Level extends Model
+class Program extends Model
 {
     public function curr()
     {

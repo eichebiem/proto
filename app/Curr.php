@@ -6,6 +6,6 @@ class Curr extends Model
 {
     public function level()
     {
-        return $this->belongsTo(Level::class);
+        return $this->belongsTo(Program::class);
     }
 }

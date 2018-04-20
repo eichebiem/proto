@@ -25,7 +25,7 @@ class CurrController extends Controller
     {
         $curriculum = new Curr;
         $curriculum->name = $r->name;
-        $curriculum->grade_id = $r->grade_id;
+        $curriculum->level_id = $r->level_id;
         $curriculum->details = $r->details;
         $curriculum->save();
 
@@ -34,7 +34,9 @@ class CurrController extends Controller
 
     public function edit(Curr $curriculum)
     {
-        return view('settings.edit_curriculum', compact('curriculum'));
+        $levels = Level::all();
+
+        return view('settings.edit_curriculum', compact('curriculum', 'levels'));
     }
 
     public function update($level, Request $request)
