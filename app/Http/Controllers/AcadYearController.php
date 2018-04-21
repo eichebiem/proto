@@ -25,4 +25,17 @@ class AcadYearController extends Controller
         return response()->json();
     }
 
+    public function update($acadyear)
+    {
+        AcadYear::where('status', 1)->update([
+            'status' => 0
+        ]);
+
+        AcadYear::where('id', $acadyear)->update([
+            'status' => 1
+        ]);
+
+        return response()->json();
+    }
+
 }

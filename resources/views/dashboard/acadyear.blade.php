@@ -23,8 +23,8 @@
                </div>
 
                <!-- Success Message -->
-               <div class="alert alert-success" style="display:none;" id="alert_delete">
-                    <i class="fa fa-check"></i> Academic Year successfully deleted.
+               <div class="alert alert-success" style="display:none;" id="alert_update">
+                    <i class="fa fa-check"></i> Academic Year successfully updated.
                </div>
                <!-- !Success Message -->
                
@@ -54,7 +54,7 @@
                                              @endif
                                         </td>
                                         <td>
-                                             <button type="button" class="btn btn-success btn-sm set" value="{{ $acadyear->id }}">Set</button>
+                                             <button type="button" class="btn btn-success btn-sm set" value="{{ $acadyear->id }}" {{ ($acadyear->status == 1) ? 'style=display:none' : '' }}>Set</button>
                                         </td>
                                    </tr>
                               @endforeach
@@ -212,12 +212,12 @@
 
           });
 
-          $('.edit').click(function(){
-               var room_id = $(this).val();
+          $('.set').click(function(){
+               var acadyear_id = $(this).val();
 
                $.confirm({
                     title: 'Confirm Action',
-                    content: 'Edit this room?',
+                    content: 'Update Academic Year?',
                     type: 'orange',
                     typeAnimated: true,
                     icon: 'fa fa-warning',
@@ -227,37 +227,11 @@
                               text: 'Yes',
                               btnClass: 'btn-success',
                               action: function () {
-                                   location.href = '/settings/room/'+room_id;
-                              }
-                         },
-                         cancel: {
-                              text: 'No',
-                              btnClass: 'btn-danger'
-                         }
-                    }
-               });
-          });
-
-          $('.delete').click(function(){
-               var room_id = $(this).val();
-
-               $.confirm({
-                    title: 'Confirm Action',
-                    content: 'Delete this room?',
-                    type: 'red',
-                    typeAnimated: true,
-                    icon: 'fa fa-warning',
-                    theme: 'dark',
-                    buttons: {
-                         confirm: {
-                              text: 'Yes',
-                              btnClass: 'btn-success',
-                              action: function () {
                                    $.ajax({
-                                        type: 'POST',
-                                        url: '/settings/room/'+room_id,
+                                        type: 'PATCH',
+                                        url: '/acadyear/'+acadyear_id,
                                         success: function(data){
-                                             $('#alert_delete').show();
+                                             $('#alert_update').show();
                                              setTimeout('location.reload(true);', 3000);
                                         }
                                    });

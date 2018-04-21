@@ -11,6 +11,7 @@ Route::get('/home', 'DashboardController@show');
 // academic year
 Route::get('/acadyear', 'AcadYearController@index');
 Route::post('/acadyear', 'AcadYearController@store');
+Route::patch('/acadyear/{acadyear}', 'AcadYearController@update');
 // !.academic year
 
 // reminders
