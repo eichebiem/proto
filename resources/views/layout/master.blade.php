@@ -79,6 +79,8 @@
 
 <!-- jQuery Validate -->
 <script src="/js/vendor/jquery.validate.min.js"></script>
+<!-- jQuery Validate -->
+<script src="/js/plugins/jquery.mask.min.js"></script>
 
 <!-- page script -->
 <script>

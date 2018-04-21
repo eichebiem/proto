@@ -8,7 +8,7 @@
           </div>
           <div class="pull-left info">
           <p>{{ auth()->user()->name }}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> {{ $year->year }} | {{ $year->semester }}</a>
           </div>
           </div>
           <!-- search form -->
@@ -79,7 +79,7 @@
 
 
           <li>
-          <a href="#">
+          <a href="/acadyear">
                <i class="fa fa-bar-chart-o"></i>
                <span>Academic Year</span>
                <span class="pull-right-container">

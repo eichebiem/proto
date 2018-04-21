@@ -8,6 +8,11 @@ Route::get('/logout', 'SessionsController@destroy');
 
 Route::get('/home', 'DashboardController@show');
 
+// academic year
+Route::get('/acadyear', 'AcadYearController@index');
+Route::post('/acadyear', 'AcadYearController@store');
+// !.academic year
+
 // reminders
 Route::get('/reminders/create', 'RemindersController@create');
 Route::post('/reminders/create', 'RemindersController@store');
