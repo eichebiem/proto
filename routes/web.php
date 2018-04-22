@@ -12,7 +12,10 @@ Route::get('/home', 'DashboardController@show');
 Route::get('/subjects/create', 'SubjectsController@create');
 Route::post('/subjects/create', 'SubjectsController@store');
 
-Route::get('/subjects', 'SubjectsController@index');
+Route::match(['get', 'post'], '/subjects', 'SubjectsController@index');
+Route::get('/subjects/{subject}', 'SubjectsController@edit');
+Route::patch('/subjects/{subject}', 'SubjectsController@update');
+Route::get('/subjects/view/{subject}', 'SubjectsController@getData');
 // !.subjects
 
 // academic year

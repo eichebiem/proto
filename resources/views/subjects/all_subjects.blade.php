@@ -43,15 +43,15 @@
                     <div class="form-group">
                          <label for="prereq" class="col-sm-2 control-label">Curriculum</label>
 
-                         <form action="/subjects/search" method="POST">
+                         <form action="/subjects" method="POST">
 
                               @csrf
                          
                               <div class="col-sm-7">
-                                   <select id="curr_id" class="form-control">
+                                   <select name="curr_id" class="form-control">
                                         <option value="" selected disabled>Select Curriculum</option>
                                         @foreach($curriculums as $curr)
-                                             <option value="{{ $curr->id }}">{{ $curr->name }}</option>
+                                             <option value="{{ $curr->id }}" {{ ($selector == $curr->id) ? 'selected' : '' }} >{{ $curr->name }}</option>
                                         @endforeach
                                    </select>
                               </div>
@@ -86,6 +86,8 @@
                                         <td>{{ $subj->code }}</td>
                                         <td>{{ $subj->description }}</td>
                                         <td>
+                                             <button type="button" class="btn btn-primary btn-sm view" value="{{ $subj->id }}"><i class="fa fa-file-o"></i> View</button>
+
                                              <button type="button" class="btn btn-warning btn-sm edit" value="{{ $subj->id }}"><i class="fa fa-edit"></i> Edit</button>
                                         </td>
                                    </tr>
@@ -127,7 +129,7 @@
                               text: 'Yes',
                               btnClass: 'btn-success',
                               action: function() {
-                                   location.reload();
+                                   location.href = '/subjects';
                               }
                          },
                          cancel: {
@@ -137,6 +139,56 @@
                     }
                });
           });
+
+          $('.edit').click(function(){
+               var subject_id = $(this).val();
+
+               $.confirm({
+                    title: 'Confirm Action',
+                    content: 'Edit this Subject?',
+                    type: 'orange',
+                    typeAnimated: true,
+                    icon: 'fa fa-warning',
+                    theme: 'dark',
+                    buttons: {
+                         confirm: {
+                              text: 'Yes',
+                              btnClass: 'btn-success',
+                              action: function () {
+                                   location.href = '/subjects/'+subject_id;
+                              }
+                         },
+                         cancel: {
+                              text: 'No',
+                              btnClass: 'btn-danger'
+                         }
+                    }
+               });
+          });
+
+
+          $('.view').click(function(){
+               var subject_id = $(this).val();
+
+               $.ajax({
+                         type: 'get',
+                         url: '/subjects/view/'+subject_id,
+                         success: function(data){
+                              $.dialog({
+                                   title: 'Subject Details',
+                                   type: 'blue',
+                                   typeAnimated: true,
+                                   icon: 'fa fa-file-o',
+                                   content: '<div class="col-sm-12"><p><strong class="col-sm-7">Curriculum:</strong> '+data['curr_id']+'</p></div><div class="col-sm-12"><p><strong class="col-sm-7">Subject Code:</strong> '+data['code']+'</p></div><div class="col-sm-12"><p><strong class="col-sm-7">Subject Description:</strong> '+data['description']+'</p></div><div class="col-sm-12"><p><strong class="col-sm-7">Year Level:</strong> '+data['yearlvl']+'</p></div><div class="col-sm-12"><p><strong class="col-sm-7">Units:</strong> '+data['units']+'</p></div><div class="col-sm-12"><p><strong class="col-sm-7">Semester:</strong> '+data['semester']+'</p></div><div class="col-sm-12"><p><strong class="col-sm-7">Pre Requisite:</strong> '+data['prereq']+'</p></div>',
+                              });
+
+                              console.log(data);
+                         }
+                    });
+
+          });
+
+
 
      })
 </script>

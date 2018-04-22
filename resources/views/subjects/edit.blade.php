@@ -5,10 +5,10 @@
 <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <section class="content-header">
-          <h1>Create Subject</h1>
+          <h1>Update Subject</h1>
           <ol class="breadcrumb">
           <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
-          <li class="active">Create Subject</li>
+          <li class="active">Update Subject</li>
           </ol>
      </section>
 
@@ -25,7 +25,7 @@
 
                <!-- Success Message -->
                <div class="alert alert-success" style="display:none;" id="alert_message">
-                    <i class="fa fa-check"></i> Subject successfully created.
+                    <i class="fa fa-check"></i> Subject successfully updated.
                </div>
                <!-- !Success Message -->
 
@@ -39,11 +39,13 @@
                          <div class="form-group col-sm-12">
                               <label for="curr_id" class="col-sm-2 control-label">Curriculum *</label>
 
+                              <input type="hidden" id="subject_id" value="{{ $subject->id }}">
+
                               <div class="col-sm-7">
                                    <select name="curr_id" id="curr_id" class="form-control">
                                         <option value="" selected disabled>Select Curriculum</option>
                                         @foreach($curriculums as $curriculum)
-                                             <option value="{{ $curriculum->id }}">{{ $curriculum->name }}</option>
+                                             <option value="{{ $curriculum->id }}" {{ ($subject->curr_id == $curriculum->id) ? 'selected' : '' }} >{{ $curriculum->name }}</option>
                                         @endforeach
                                    </select>
                               </div>
@@ -53,7 +55,7 @@
                               <label for="code" class="col-sm-2 control-label">Subject Code *</label>
 
                               <div class="col-sm-3">
-                                   <input type="text" name="code" id="code" class="form-control">
+                                   <input type="text" name="code" id="code" class="form-control" value="{{ $subject->code }}">
                               </div>
                          </div>
 
@@ -61,7 +63,7 @@
                               <label for="description" class="col-sm-2 control-label">Subject Description *</label>
 
                               <div class="col-sm-7">
-                                   <input type="text" name="description" id="description" class="form-control">
+                                   <input type="text" name="description" id="description" class="form-control" value="{{ $subject->description }}">
                               </div>
                          </div>
 
@@ -70,11 +72,10 @@
 
                               <div class="col-sm-3">
                                    <select name="yearlvl" id="yearlvl" class="form-control">
-                                        <option value="" selected disabled>Select Year Level</option>
-                                        <option value="1st Year">1st Year</option>
-                                        <option value="2nd Year">2nd Year</option>
-                                        <option value="3rd Year">3rd Year</option>
-                                        <option value="4th Year">4th Year</option>
+                                        <option value="1st Year" {{ ($subject->yearlvl == '1st Year') ? 'selected' : '' }}>1st Year</option>
+                                        <option value="2nd Year" {{ ($subject->yearlvl == '2nd Year') ? 'selected' : '' }}>2nd Year</option>
+                                        <option value="3rd Year" {{ ($subject->yearlvl == '3rd Year') ? 'selected' : '' }}>3rd Year</option>
+                                        <option value="4th Year" {{ ($subject->yearlvl == '4th Year') ? 'selected' : '' }}>4th Year</option>
                                    </select>
                               </div>
                          </div>
@@ -83,7 +84,7 @@
                               <label for="units" class="col-sm-2 control-label">Units *</label>
 
                               <div class="col-sm-3">
-                                   <input type="text" name="units" id="units" class="form-control">
+                                   <input type="text" name="units" id="units" class="form-control" value="{{ $subject->units }}">
                               </div>
                          </div>
 
@@ -92,10 +93,9 @@
 
                               <div class="col-sm-3">
                                    <select name="semester" id="semester" class="form-control">
-                                        <option value="" selected disabled>Select Semester</option>
-                                        <option value="1st Semester">1st Semester</option>
-                                        <option value="2nd Semester">2nd Semester</option>
-                                        <option value="Summer">Summer</option>
+                                        <option value="1st Semester" {{ ($subject->semester == '1st Semester') ? 'selected' : '' }}>1st Semester</option>
+                                        <option value="2nd Semester" {{ ($subject->semester == '2nd Semester') ? 'selected' : '' }}>2nd Semester</option>
+                                        <option value="Summer" {{ ($subject->semester == 'Summer') ? 'selected' : '' }}>Summer</option>
                                    </select>
                               </div>
                          </div>
@@ -193,6 +193,8 @@
                },
 
                submitHandler: function(){
+                    var subject_id = $('#subject_id').val();
+
                     var curr_id = $('#curr_id').val();
                     var code = $('#code').val();
                     var description = $('#description').val();
@@ -202,8 +204,8 @@
                     var prereq = $('#prereq').val();
 
                     $.ajax({
-                         type: 'POST',
-                         url: '/subjects/create',
+                         type: 'PATCH',
+                         url: '/subjects/'+subject_id,
                          data: {
                               curr_id:curr_id,
                               code:code,
@@ -222,7 +224,8 @@
                               $('#units').val('');
                               $('#semester').val('');
                               $('#prereq').val('');
-                              // console.log('data saved');
+                              console.log(data);
+                              setTimeout('location.href="/subjects";', 3000);
                          }
                     });
                }
