@@ -8,6 +8,13 @@ Route::get('/logout', 'SessionsController@destroy');
 
 Route::get('/home', 'DashboardController@show');
 
+// subjects
+Route::get('/subjects/create', 'SubjectsController@create');
+Route::post('/subjects/create', 'SubjectsController@store');
+
+Route::get('/subjects', 'SubjectsController@index');
+// !.subjects
+
 // academic year
 Route::get('/acadyear', 'AcadYearController@index');
 Route::post('/acadyear', 'AcadYearController@store');

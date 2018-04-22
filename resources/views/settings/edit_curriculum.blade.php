@@ -36,7 +36,7 @@
                
                     <div class="box-body">
                            
-                         <div class="form-group">
+                         <div class="form-group col-sm-12">
                               <label for="curriculum_name" class="col-sm-2 control-label">Curriculum Name</label>
 
                               <input type="hidden" id="curriculum_id" value="{{ $curriculum->id }}">
@@ -46,10 +46,7 @@
                               </div>
                          </div>
 
-                         <br>
-                         <br>
-
-                         <div class="form-group">
+                         <div class="form-group col-sm-12">
                               <label for="program_id" class="col-sm-2 control-label">Program Description</label>
 
                               <div class="col-sm-10">
@@ -61,10 +58,7 @@
                               </div>
                          </div>
 
-                         <br>
-                         <br>
-
-                         <div class="form-group">
+                         <div class="form-group col-sm-12">
                               <label for="curriculum_details" class="col-sm-2 control-label">Details</label>
 
                               <div class="col-sm-10">

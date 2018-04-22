@@ -34,7 +34,7 @@
                
                     <div class="box-body">
                            
-                         <div class="form-group">
+                         <div class="form-group col-sm-12">
                               <label for="room_name" class="col-sm-2 control-label">Room Name</label>
                               <input type="hidden" id="room_id" value="{{ $room->id }}">
 

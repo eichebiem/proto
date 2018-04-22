@@ -28,63 +28,80 @@
 
 
           <li>
-          <a href="/home">
-               <i class="fa fa-home"></i>
-               <span>Home</span>
-               <span class="pull-right-container">
-               </span>
-          </a>
+               <a href="/home">
+                    <i class="fa fa-home"></i>
+                    <span>Home</span>
+                    <span class="pull-right-container">
+                    </span>
+               </a>
           </li>
 
 
           <li class="treeview">
-          <a href="#">
-               <i class="fa fa-bank"></i>
-               <span>Enrollment</span>
-               <span class="pull-right-container">
+               <a href="#">
+                    <i class="fa fa-bank"></i>
+                    <span>Enrollment</span>
+                    <span class="pull-right-container">
+                         <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+               </a>
+               <ul class="treeview-menu">
+
+                    <li><a href="#">Enroll New Student</a></li>
+
+                    <li><a href="#">Add Student Subject</a></li>
+
+                    <li><a href="#">Drop Subject</a></li>
+
+                    <li><a href="#">Change Subject</a></li>
+
+                    <li><a href="#">Student Record</a></li>
+
+               </ul>
+          </li>
+
+          <li class="treeview">
+               <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>Subject</span>
+                    <span class="pull-right-container">
+                         <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+               </a>
+               <ul class="treeview-menu">
+
+                    <li><a href="/subjects/create">Create Subject</a></li>
+
+                    <li><a href="/subjects">Subject Information</a></li>
+
+               </ul>
+          </li>
+
+
+          <li class="treeview">
+               <a href="#">
+                    <i class="fa fa-bell"></i> <span>Reminders</span>
+                    <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
-               </span>
-          </a>
-          <ul class="treeview-menu">
+                    </span>
+               </a>
+               <ul class="treeview-menu">
 
-               <li><a href="#">Enroll New Student</a></li>
+                    <li><a href="/reminders/create">Create Reminder</a></li>
 
-               <li><a href="#">Add Student Subject</a></li>
+                    <li><a href="/reminders">Reminder's Panel</a></li>
 
-               <li><a href="#">Drop Subject</a></li>
-
-               <li><a href="#">Change Subject</a></li>
-
-               <li><a href="#">Student Record</a></li>
-
-          </ul>
-          </li>
-
-
-          <li class="treeview">
-          <a href="#">
-               <i class="fa fa-bell"></i> <span>Reminders</span>
-               <span class="pull-right-container">
-               <i class="fa fa-angle-left pull-right"></i>
-               </span>
-          </a>
-          <ul class="treeview-menu">
-
-               <li><a href="/reminders/create">Create Reminder</a></li>
-
-               <li><a href="/reminders">Reminder's Panel</a></li>
-
-          </ul>
+               </ul>
           </li>
 
 
           <li>
-          <a href="/acadyear">
-               <i class="fa fa-bar-chart-o"></i>
-               <span>Academic Year</span>
-               <span class="pull-right-container">
-               </span>
-          </a>
+               <a href="/acadyear">
+                    <i class="fa fa-bar-chart-o"></i>
+                    <span>Academic Year</span>
+                    <span class="pull-right-container">
+                    </span>
+               </a>
           </li>
 
 
@@ -99,23 +116,23 @@
 
 
           <li class="treeview">
-          <a href="#">
-               <i class="fa fa-gears"></i> <span>Settings</span>
-               <span class="pull-right-container">
-               <i class="fa fa-angle-left pull-right"></i>
-               </span>
-          </a>
-          <ul class="treeview-menu">
+               <a href="#">
+                    <i class="fa fa-gears"></i> <span>Settings</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+               </a>
+               <ul class="treeview-menu">
 
-               <li><a href="/settings/room">Room</a></li>
+                    <li><a href="/settings/room">Room</a></li>
 
-               <li><a href="/settings/program">Program</a></li>
+                    <li><a href="/settings/program">Program</a></li>
 
-               <li><a href="/settings/curriculum">Curriculum</a></li>
+                    <li><a href="/settings/curriculum">Curriculum</a></li>
 
-               <li><a href="#">Grade</a></li>
+                    <li><a href="#">Grade</a></li>
 
-          </ul>
+               </ul>
           </li>
           
 

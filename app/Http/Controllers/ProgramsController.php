@@ -23,6 +23,7 @@ class ProgramsController extends Controller
     {
         $program = new Program;
         $program->description = $r->description;
+        $program->code = $r->code;
         $program->save();
 
         return response()->json();
@@ -35,7 +36,7 @@ class ProgramsController extends Controller
 
     public function update($program, Request $request)
     {
-        Program::find($program)->update(request(['description']));
+        Program::find($program)->update(request(['description', 'code']));
 
         return response()->json();
     }

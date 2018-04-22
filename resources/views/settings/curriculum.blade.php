@@ -83,7 +83,7 @@
                
                     <div class="box-body">
                            
-                         <div class="form-group">
+                         <div class="form-group col-sm-12">
                               <label for="curriculum_name" class="col-sm-2 control-label">Curriculum Name</label>
 
                               <div class="col-sm-10">
@@ -91,10 +91,7 @@
                               </div>
                          </div>
 
-                         <br>
-                         <br>
-
-                         <div class="form-group">
+                         <div class="form-group col-sm-12">
                               <label for="program_id" class="col-sm-2 control-label">Program Description</label>
 
                               <div class="col-sm-10">
@@ -108,14 +105,11 @@
                               </div>
                          </div>
 
-                         <br>
-                         <br>
-
-                         <div class="form-group">
+                         <div class="form-group col-sm-12">
                               <label for="curriculum_details" class="col-sm-2 control-label">Details</label>
 
                               <div class="col-sm-10">
-                                   <textarea name="details" id="curriculum_details" class="form-control" placeholder="Grade Name" cols="30" rows="5"></textarea>
+                                   <textarea name="details" id="curriculum_details" class="form-control" placeholder="Details" cols="30" rows="5"></textarea>
                               </div>
                          </div>
 
@@ -204,7 +198,7 @@
                               $('#alert_message').show();
                               $('#alert_message').delay(10000).fadeOut();
                               $('#curriculum_name').val('');
-                              $('#level_id').val('');
+                              $('#program_id').val('');
                               $('#curriculum_details').val('');
                               // console.log(data);
                               setTimeout('location.reload(true);', 3000);

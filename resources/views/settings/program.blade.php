@@ -83,11 +83,19 @@
                
                     <div class="box-body">
                            
-                         <div class="form-group">
+                         <div class="form-group col-sm-12">
                               <label for="program_description" class="col-sm-2 control-label">Program Description</label>
 
                               <div class="col-sm-10">
                                    <input type="text" class="form-control" id="program_description" placeholder="Program Description" name="description">
+                              </div>
+                         </div>
+
+                         <div class="form-group col-sm-12">
+                              <label for="program_code" class="col-sm-2 control-label">Program Code</label>
+
+                              <div class="col-sm-10">
+                                   <input type="text" class="form-control" id="program_code" placeholder="Program Code" name="code">
                               </div>
                          </div>
 
@@ -137,29 +145,38 @@
                     description: {
                          required: true,
                          minlength: 5
+                    },
+                    code: {
+                         required: true
                     }
                },
 
                messages: {
                     description: {
                          required: "Program Description is required"
+                    },
+                    code: {
+                         required: "Program Code is required"
                     }
                },
 
                submitHandler: function(){
                     var program_description = $('#program_description').val();
+                    var program_code = $('#program_code').val();
 
                     $.ajax({
                          type: 'POST',
                          url: '/settings/program',
                          data: {
-                              description:program_description
+                              description:program_description,
+                              code:program_code
                          },
                          success: function(data){
                               $('#alert_message').show();
                               $('#alert_message').delay(10000).fadeOut();
-                              $('#grade_name').val('');
-                              // console.log('data saved');
+                              $('#program_description').val('');
+                              $('#program_code').val('');
+                              console.log('data saved');
                               setTimeout('location.reload(true);', 3000);
                          }
                     });
