@@ -70,7 +70,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                         <button type="reset" class="btn btn-warning btn-sm pull-right"><i class="fa fa-refresh"></i> Reset</button>
+                         <button type="reset" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i> Reset</button>
 
                          <button type="submit" class="btn btn-success btn-sm pull-right"><i class="fa fa-floppy-o"></i> Save</button>
                     </div>
