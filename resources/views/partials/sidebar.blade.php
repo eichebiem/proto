@@ -62,6 +62,23 @@
 
           <li class="treeview">
                <a href="#">
+                    <i class="fa fa-list-alt"></i>
+                    <span>Class</span>
+                    <span class="pull-right-container">
+                         <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+               </a>
+               <ul class="treeview-menu">
+
+                    <li><a href="#">Create Class Schedule</a></li>
+
+                    <li><a href="#">Class Information</a></li>
+
+               </ul>
+          </li>
+
+          <li class="treeview">
+               <a href="#">
                     <i class="fa fa-th"></i>
                     <span>Subject</span>
                     <span class="pull-right-container">

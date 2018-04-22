@@ -34,7 +34,7 @@ class SubjectsController extends Controller
     {
         $curriculums = Curr::all();
 
-        $subjs = Subject::where('curr_id', $request->curr_id)->get();
+        $subjs = Curr::find($request->curr_id)->subject()->get();
 
         // dd($subjs);
 

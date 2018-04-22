@@ -8,6 +8,11 @@ Route::get('/logout', 'SessionsController@destroy');
 
 Route::get('/home', 'DashboardController@show');
 
+// class schedule
+Route::get('/class/create', 'SubjectsController@create');
+Route::post('/class/create', 'SubjectsController@store');
+// !.class schedule
+
 // subjects
 Route::get('/subjects/create', 'SubjectsController@create');
 Route::post('/subjects/create', 'SubjectsController@store');
